@@ -1,7 +1,7 @@
 {
-  "name": "ai-image-generator",
+  "name": "artifi",
   "version": "1.0.0",
-  "description": "AI Image Generator using Stable Diffusion XL",
+  "description": "Artifi - Transform your ideas into stunning images with AI",
   "main": "server.js",
   "type": "module",
   "scripts": {

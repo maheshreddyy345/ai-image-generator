@@ -1,12 +1,13 @@
-# AI Image Generator
+# Artifi
 
-A web application that generates images using Stable Diffusion XL through Replicate's API.
+Transform your ideas into stunning images with AI. Artifi is a powerful web application that uses state-of-the-art AI technology to generate images from your text descriptions.
 
 ## Features
-- Simple and intuitive user interface
+- Clean and intuitive user interface
 - Real-time image generation
 - High-quality output using Stable Diffusion XL
-- Responsive design
+- Responsive design for all devices
+- Fast and reliable image generation
 
 ## Tech Stack
 - Frontend: HTML, CSS, JavaScript
@@ -26,5 +27,11 @@ REPLICATE_API_TOKEN=your_replicate_api_token
 4. Run the server: `npm start`
 5. Open http://localhost:3000 in your browser
 
+## Usage
+1. Enter a detailed description of the image you want to create
+2. Click "Generate Image"
+3. Wait a few seconds for your image to be generated
+4. The generated image will appear below the input field
+
 ## Deployment
-This application is ready to be deployed on Render.com or similar platforms.
+This application is deployed on Render.com and can be accessed at your deployment URL.
