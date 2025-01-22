@@ -4,6 +4,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const resultImage = document.getElementById('result-image');
     const loading = document.getElementById('loading');
 
+    // Get the API URL based on the environment
+    const API_URL = window.location.hostname === 'localhost' 
+        ? 'http://localhost:3000' 
+        : '';
+
     generateBtn.addEventListener('click', async () => {
         const prompt = promptInput.value.trim();
         
@@ -19,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
         generateBtn.disabled = true;
 
         try {
-            const response = await fetch('http://localhost:3000/generate', {
+            const response = await fetch(`${API_URL}/generate`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
