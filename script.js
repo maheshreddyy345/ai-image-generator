@@ -5,9 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const loading = document.getElementById('loading');
 
     // Get the API URL based on the environment
-    const API_URL = window.location.hostname === 'localhost' 
-        ? 'http://localhost:3000' 
-        : '';
+    const API_URL = window.location.origin;
 
     generateBtn.addEventListener('click', async () => {
         const prompt = promptInput.value.trim();
