@@ -4,13 +4,8 @@
   "description": "AI Image Generator using Stable Diffusion XL",
   "main": "server.js",
   "type": "module",
-  "engines": {
-    "node": "18.x"
-  },
   "scripts": {
-    "start": "node server.js",
-    "build": "npm install",
-    "dev": "node server.js"
+    "start": "node server.js"
   },
   "dependencies": {
     "express": "^4.18.2",
