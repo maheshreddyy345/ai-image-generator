@@ -2,6 +2,9 @@ import express from 'express';
 import cors from 'cors';
 import Replicate from 'replicate';
 import dotenv from 'dotenv';
+import mongoose from 'mongoose';
+import authRoutes from './routes/auth.js';
+import { auth } from './middleware/auth.js';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
@@ -11,6 +14,19 @@ const __dirname = path.dirname(__filename);
 dotenv.config();
 
 const app = express();
+const port = process.env.PORT || 3000;
+
+// MongoDB connection with better error handling
+mongoose.connect(process.env.MONGODB_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+})
+.then(() => console.log('✅ Connected to MongoDB successfully'))
+.catch(err => {
+    console.error('❌ MongoDB connection error:', err);
+    process.exit(1);
+});
+
 app.use(cors());
 app.use(express.json());
 app.use(express.static(__dirname));
@@ -21,11 +37,15 @@ if (!process.env.REPLICATE_API_TOKEN) {
     process.exit(1);
 }
 
+// Auth routes
+app.use('/api/auth', authRoutes);
+
 const replicate = new Replicate({
     auth: process.env.REPLICATE_API_TOKEN,
 });
 
-app.post('/generate', async (req, res) => {
+// Protected route - requires authentication
+app.post('/generate', auth, async (req, res) => {
     try {
         const { prompt } = req.body;
         
@@ -71,10 +91,7 @@ app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
 });
 
-const PORT = process.env.PORT || 3000;
-const HOST = '0.0.0.0';
-
-app.listen(PORT, HOST, () => {
-    console.log(`Server running on port ${PORT}`);
-    console.log(`Open http://localhost:${PORT} in your browser`);
+app.listen(port, () => {
+    console.log(`🚀 Server running on port ${port}`);
+    console.log(`📱 Open http://localhost:${port} in your browser`);
 });
