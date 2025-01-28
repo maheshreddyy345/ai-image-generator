@@ -18,8 +18,10 @@ const port = process.env.PORT || 3000;
 
 // MongoDB connection with better error handling
 mongoose.connect(process.env.MONGODB_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
+    dbName: 'artifi',
+    retryWrites: true,
+    w: 'majority',
+    maxPoolSize: 10,
 })
 .then(() => console.log('✅ Connected to MongoDB successfully'))
 .catch(err => {
